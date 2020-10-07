@@ -21,9 +21,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/contact', 'ContactController@create');
 
 Route::post('/project/create', 'ProjectController@create');
-Route::get('/project/get', 'ProjectController@get');
+Route::get('/project/get/{id?}', 'ProjectController@get');
+
+// download
+Route::get('/cv', 'ProjectController@download');
 
 Route::post('/pic', 'ProjectController@image_path');
 
 Route::post('/social/create', 'SocialLinkController@create');
 Route::get('/social/get', 'SocialLinkController@get');
+Route::delete('/social/delete/{id}', 'SocialLinkController@delete');
+Route::put('/social/update/{id}', 'SocialLinkController@update');
+
+Route::post('/crousel/create', 'CrouselController@create');
+Route::get('/crousel/get', 'CrouselController@get');
+
+Route::post('/sam', 'ProjectController@sam');
+
+Route::post('/user/login', 'UserController@login');
+
+Route::post('/blog/create', 'BlogController@create');
+Route::get('/blog/get', 'BlogController@get');
+Route::delete('/blog/delete/{id}', 'BlogController@delete');
+Route::put('/blog/update/{id}', 'BlogController@update');

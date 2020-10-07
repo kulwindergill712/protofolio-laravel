@@ -21,10 +21,15 @@ class ProjectController extends Controller
         if ($create_space) {return $this->s('project created Succssfully', '');}
     }
 
-    public function get()
+    public function get($id = null)
     {
-        $data = project::get();
-        return $this->s('Project Fetched successfull', $data);
+        if ($id == null) {
+            $data = project::get();
+            return $this->s('Project Fetched successfull', $data);
+        } else {
+            $data = project::where('id', $id)->get();
+            return $this->s('Project Fetched successfull', $data);
+        }
     }
 
     public function image_path(Request $request)
@@ -69,4 +74,17 @@ class ProjectController extends Controller
         return $rule;
 
     }
+
+    public function download()
+    {
+
+        $file = "file/resume.pdf";
+
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return $this->s("data fetchd succesfully", $file);
+        // return Response::download($file, 'kulwinder_pdf.pdf', $headers);
+    }
+
 }

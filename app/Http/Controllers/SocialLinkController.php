@@ -32,6 +32,28 @@ class SocialLinkController extends Controller
 
         ];
     }
+    public function delete($id)
+    {
+        $delete_social = SocialLink::find($id);
+        if (!$delete_social) {return $this->f('Invalid Data');}
+
+        $delete_social->delete();
+        return $this->s('Social link delete', " ");
+
+    }
+
+    public function update(Request $request, $id)
+    {
+        $update_catagory = SocialLink::find($id);
+        if (!$update_catagory) {return $this->f('Invalid Data');}
+
+        $validator = Validator::make($request->all(), $this->rule($id));
+        if ($validator->errors()->all()) {return $this->f($validator->errors()->first());}
+
+        if ($update_catagory->update($request->all()));
+        {return $this->s('Social Updated Successfully', '');}
+
+    }
 
     public function rule($id)
     {
@@ -42,7 +64,7 @@ class SocialLinkController extends Controller
             'link' => 'required|min:2|string|max:100',
         ];
         if ($id != '') {
-            $rule['title'] = 'required|min:2|string|max:50|unique:spaces,title,' . $id;
+
         }
         return $rule;
 
