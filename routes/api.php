@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/contact', 'ContactController@create');
+Route::get('/contact/get', 'ContactController@get');
 
 Route::post('/project/create', 'ProjectController@create');
 Route::get('/project/get/{id?}', 'ProjectController@get');
@@ -41,6 +42,8 @@ Route::post('/sam', 'ProjectController@sam');
 Route::post('/user/login', 'UserController@login');
 
 Route::post('/blog/create', 'BlogController@create');
-Route::get('/blog/get', 'BlogController@get');
+Route::get('/blog/get/{id?}', 'BlogController@get');
 Route::delete('/blog/delete/{id}', 'BlogController@delete');
 Route::put('/blog/update/{id}', 'BlogController@update');
+
+Route::post('/login/google', 'SocialController@googlelogin');

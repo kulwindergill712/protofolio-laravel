@@ -27,6 +27,15 @@ class Blog extends Model
 
     }
 
+    public function getCreatedAtAttribute($value)
+    {
+        return $value ? date('Y-m-d', strtotime($value)) : '';
+    }
+    public function getUpdatedAtAttribute($value)
+    {
+        return $value ? date('Y-m-d', strtotime($value)) : '';
+    }
+
     public function toArray()
     {
         $array = parent::toArray();

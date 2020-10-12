@@ -21,10 +21,14 @@ class BlogController extends Controller
         if ($create_space) {return $this->s('Blog Created Sucessfully', '');}
     }
 
-    public function get()
+    public function get($id = null)
     {
+        if ($id != null) {
+            $data = Blog::where('id', $id)->get();
+            return $this->s('Blogs Fetched successfull', $data);
+        }
         $data = Blog::get();
-        return $this->s('Social links Fetched successfull', $data);
+        return $this->s('Blogs Fetched successfull', $data);
     }
     public function custom()
     {

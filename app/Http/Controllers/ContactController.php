@@ -19,6 +19,12 @@ class ContactController extends Controller
 
         if ($create_space) {return $this->s('Message sent Successfully', '');}
     }
+
+    public function get()
+    {
+        $contact = Contact::get();
+        return $this->s("Contacts fetched Sucessfullly", $contact);
+    }
     public function custom()
     {
         return [
